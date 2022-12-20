@@ -28,8 +28,8 @@ isPangram("This is not a pangram."); // false
 
 // Most voted solution
 function isPangramPRO(string) {
-    string = string.toLowerCase();
+    string = string.toLowerCase(); // Sets the input string to lower case
     return "abcdefghijklmnopqrstuvwxyz"
         .split("")
-        .every((x) => string.includes(x));
+        .every((x) => string.includes(x)); // Uses the every method on the alphabet and the includes method on the input string
 } // Clever use of the 'every' method! If at least one of the letters is missing it would return false! Also, turns out 'includes' works on strings.
