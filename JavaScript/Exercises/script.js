@@ -1,4 +1,6 @@
-// IS PANGRAM?
+// !!! 6 KYU !!!
+
+// Is pangram?
 // A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
 // Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
 
@@ -33,3 +35,44 @@ function isPangramPRO(string) {
         .split("")
         .every((x) => string.includes(x)); // Uses the every method on the alphabet and the includes method on the input string
 } // Clever use of the 'every' method! If at least one of the letters is missing it would return false! Also, turns out 'includes' works on strings.
+
+//
+
+// !!! 5 KYU !!!
+
+// Human Readable Time
+// Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+// My attempt
+
+function humanReadable(seconds) {
+    function toTwoDigits(input) {
+        return input > 9 ? input : "0" + input;
+    }
+
+    let hrs = toTwoDigits(Math.floor(seconds / 3600));
+
+    let min = toTwoDigits(Math.floor((seconds % 3600) / 60));
+
+    let sec = toTwoDigits(seconds % 60);
+
+    return `${hrs}:${min}:${sec}`;
+}
+
+humanReadable(0); // "00:00:00"
+humanReadable(359999); // "99:59:59"
+
+// Most voted solution
+
+function humanReadablePRO(seconds) {
+    var pad = function (x) {
+        return x < 10 ? "0" + x : x;
+    };
+    return (
+        pad(parseInt(seconds / (60 * 60))) +
+        ":" +
+        pad(parseInt((seconds / 60) % 60)) +
+        ":" +
+        pad(seconds % 60)
+    );
+} // I didn't know parseInt would also work on numbers and act like Math.floor()
