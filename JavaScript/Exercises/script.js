@@ -36,6 +36,34 @@ function isPangramPRO(string) {
         .every((x) => string.includes(x)); // Uses the every method on the alphabet and the includes method on the input string
 } // Clever use of the 'every' method! If at least one of the letters is missing it would return false! Also, turns out 'includes' works on strings.
 
+// Morse code part 1
+// Your task is to implement a function that would take the morse code as input and return a decoded human-readable string.
+
+// My attempt
+decodeMorse = function (morseCode) {
+    return morseCode
+        .trim()
+        .split("   ")
+        .map((word) =>
+            word
+                .split(" ")
+                .map((morse) => MORSE_CODE[morse])
+                .join("")
+        )
+        .join(" ");
+};
+
+// Most voted solution
+decodeMorsePRO = function (morseCode) {
+    function decodeMorseLetter(letter) {
+        return MORSE_CODE[letter];
+    }
+    function decodeMorseWord(word) {
+        return word.split(" ").map(decodeMorseLetter).join("");
+    }
+    return morseCode.trim().split("   ").map(decodeMorseWord).join(" ");
+}; // This is more readable, as it is easier to see that there are two steps: Separate each word and then translate each letter
+
 //
 
 // !!! 5 KYU !!!
