@@ -64,6 +64,21 @@ decodeMorsePRO = function (morseCode) {
     return morseCode.trim().split("   ").map(decodeMorseWord).join(" ");
 }; // This is more readable, as it is easier to see that there are two steps: Separate each word and then translate each letter
 
+//Sort the odd
+// You will be given an array of numbers. You have to sort the odd numbers in ascending order while leaving the even numbers at their original positions.
+
+// My attempt
+function sortArray(array) {
+    let oddArr = array.filter((n) => n % 2).sort((a, b) => a - b); // Use this function to sort numbers!
+    return array.map((n) => (n % 2 ? oddArr.shift() : n));
+}
+
+// Most voted solution
+function sortArrayPRO(array) {
+    const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
+    return array.map((x) => (x % 2 ? odd.shift() : x));
+} // This looks almost identical to my approach! I think I'm getting the gist of it.
+
 //
 
 // !!! 5 KYU !!!
