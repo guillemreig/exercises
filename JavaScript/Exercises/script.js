@@ -119,3 +119,33 @@ function humanReadablePRO(seconds) {
         pad(seconds % 60)
     );
 } // I didn't know parseInt would also work on numbers and act like Math.floor()
+
+// Pig latin
+
+// My attempt
+
+function pigIt(str) {
+    const regex = /^[.,:!?]/;
+
+    function latinise(word) {
+        if (!word.match(regex)) {
+            let latinWord = word.split("");
+
+            latinWord.push(latinWord.shift(), "a", "y");
+
+            return latinWord.join("");
+        }
+        return word;
+    }
+
+    return str
+        .split(" ")
+        .map((x) => latinise(x))
+        .join(" ");
+}
+
+// Most voted solution
+
+function pigItPro(str) {
+    return str.replace(/(\w)(\w*)(\s|$)/g, "$2$1ay$3");
+} // I still have to lear the extent of regex. This solution is more advanced that my current knowledge
