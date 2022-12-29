@@ -148,4 +148,4 @@ function pigIt(str) {
 
 function pigItPro(str) {
     return str.replace(/(\w)(\w*)(\s|$)/g, "$2$1ay$3");
-} // I still have to lear the extent of regex. This solution is more advanced that my current knowledge
+} // I still have to learn the extent of regex. This solution is more advanced that my current knowledge.
