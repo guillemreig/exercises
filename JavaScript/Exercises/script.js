@@ -149,3 +149,30 @@ function pigIt(str) {
 function pigItPro(str) {
     return str.replace(/(\w)(\w*)(\s|$)/g, "$2$1ay$3");
 } // I still have to learn the extent of regex. This solution is more advanced that my current knowledge.
+
+// Move zeros to the end
+
+// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+// My attempt
+
+function moveZeros(arr) {
+    const zeroArr = arr.filter((x) => x === 0);
+    const otherArr = arr.filter((x) => x !== 0);
+
+    return otherArr.concat(zeroArr);
+}
+
+// Most voted solution
+
+var moveZerosPRO = function (arr) {
+    return arr
+        .filter(function (x) {
+            return x !== 0;
+        })
+        .concat(
+            arr.filter(function (x) {
+                return x === 0;
+            })
+        );
+}; // It's basically the same, but compressed in one line
