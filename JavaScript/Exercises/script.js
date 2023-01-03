@@ -176,3 +176,57 @@ var moveZerosPRO = function (arr) {
             })
         );
 }; // It's basically the same, but compressed in one line
+
+// Pick peaks
+
+// In this kata, you will write a function that returns the positions and the values of the "peaks" (or local maxima) of a numeric array.
+// For example, the array arr = [0, 1, 2, 5, 1, 0] has a peak at position 3 with a value of 5 (since arr[3] equals 5).
+// Also, beware of plateaus !!! [1, 2, 2, 2, 1] has a peak while [1, 2, 2, 2, 3] and [1, 2, 2, 2, 2] do not.
+// In case of a plateau-peak, please only return the position and value of the beginning of the plateau.
+// For example: pickPeaks([1, 2, 2, 2, 1]) returns {pos: [1], peaks: [2]} (or equivalent in other languages)
+
+// My attempt
+
+function pickPeaks(arr) {
+    const posArr = [];
+    const peaksArr = [];
+
+    let possiblePos = null;
+    let possiblePeak = null;
+
+    const length = arr.length;
+
+    for (let i = 1; i < length; i++) {
+        if (arr[i] > arr[i - 1]) {
+            possiblePos = i;
+            possiblePeak = arr[i];
+        } else if (arr[i] < arr[i - 1] && possiblePos != null) {
+            posArr.push(possiblePos);
+            peaksArr.push(possiblePeak);
+
+            possiblePos = null;
+            possiblePeak = null;
+        }
+    }
+
+    return { pos: posArr, peaks: peaksArr };
+}
+
+// Most voted version
+
+function pickPeaksPro(arr) {
+    var result = { pos: [], peaks: [] };
+    if (arr.length > 2) {
+        var pos = -1;
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[i - 1]) {
+                pos = i;
+            } else if (arr[i] < arr[i - 1] && pos != -1) {
+                result.pos.push(pos);
+                result.peaks.push(arr[pos]);
+                pos = -1;
+            }
+        }
+    }
+    return result;
+} // Same principle as mine, although I think my approach is more readable
