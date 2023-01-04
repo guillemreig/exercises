@@ -252,9 +252,21 @@ function rgb(r, g, b) {
         }
     }
 
-    return Array.from(arguments)
-        .map((x) => toHex(x))
-        .join("");
+    return [a, b, c].map((x) => toHex(x)).join("");
 }
 
 // Most voted solution
+
+function rgbPRO(r, g, b) {
+    function toHex(d) {
+        if (d < 0) {
+            return "00";
+        }
+        if (d > 255) {
+            return "FF";
+        }
+        return ("0" + Number(d).toString(16)).slice(-2).toUpperCase();
+    }
+
+    return toHex(r) + toHex(g) + toHex(b);
+} // Almost the same idea. I like the other way's return line more though
