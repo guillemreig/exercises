@@ -1,4 +1,6 @@
-// !!! 6 KYU !!!
+// 7 KYU
+
+// 6 KYU
 
 // Is pangram?
 // A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
@@ -81,7 +83,7 @@ function sortArrayPRO(array) {
 
 //
 
-// !!! 5 KYU !!!
+// 5 KYU
 
 // Human Readable Time
 // Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
@@ -230,3 +232,29 @@ function pickPeaksPro(arr) {
     }
     return result;
 } // Same principle as mine, although I think my approach is more readable
+
+// RGB to Hex convertor
+
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned.
+// Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+
+// My attempt
+
+function rgb(r, g, b) {
+    function toHex(n) {
+        if (n < 1) {
+            return "00";
+        } else if (n > 254) {
+            return "FF";
+        } else {
+            let hex = ("00" + n.toString(16).toUpperCase()).slice(-2);
+            return hex;
+        }
+    }
+
+    return Array.from(arguments)
+        .map((x) => toHex(x))
+        .join("");
+}
+
+// Most voted solution
