@@ -67,3 +67,27 @@ function makeNegativePRO(num) {
 }
 
 // The Math.abs() method returns the absolute value of a number. We return the negative of the absolute value.
+
+//
+
+// Reversed Strings
+// Complete the solution so that it reverses the string passed into it.
+
+function reverseString(str) {
+    let output = [];
+
+    str.split("").forEach((x) => output.unshift(x));
+
+    return output.join("");
+}
+
+// 1st we prepare an empty array.
+// Then we turn the input word into an array of leters with .split("") and run a forEach loop on it, unshifting (push to front) every letter to the prepared array.
+// Finally we join all the letters and return the reversed word.
+
+function reverseStringPRO(str) {
+    return [...str].reverse().join("");
+}
+
+// [...x], used to clone arrays, can also turn a string into an array of letters
+// The .reverse() method reverses the elements of an array.
