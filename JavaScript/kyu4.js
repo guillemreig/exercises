@@ -71,39 +71,47 @@ function getGeneration(cells, generations) {
 
     console.log("dimensions :", height, "x", width);
 
-    const resultArr = [...cells];
+    // Safely copy multidimensional array
+    const resultArr = cells.map((arr) => arr.slice());
 
-    for (let i = 0; i < height; i++) {
-        for (let j = 0; j < width; j++) {
-            let count = 0;
-            // Upper row
-            i && j && cells[i - 1][j - 1] && count++;
-            i && cells[i - 1][j] && count++;
-            i && j < width && cells[i - 1][j + 1] && count++;
-            console.log(count);
+    for (let g = 0; g < generations; g++) {
+        cells.forEach((row, i) => {
+            row.forEach((element, j) => {
+                console.log("cells", cells);
+                console.log("cells[0][0]", cells[0][0]);
 
-            // Same row
-            j && cells[i][j - 1] === 1 && count++;
-            j < width && cells[i][j + 1] && count++;
-            console.log(count);
+                let count = 0;
+                // Upper row
+                i && j && cells[i - 1][j - 1] && count++;
+                i && cells[i - 1][j] && count++;
+                i && j < width && cells[i - 1][j + 1] && count++;
+                console.log(count);
 
-            // Lower row
-            i < height && j && cells[i + 1][j - 1] && count++;
-            i < height && cells[i + 1][j] && count++;
-            i < height && j < width && cells[i + 1][j + 1] && count++;
-            console.log(count);
+                // Same row
+                j && cells[i][j - 1] && count++;
+                j < width && cells[i][j + 1] && count++;
+                console.log(count);
 
-            console.log("row :", i, "col :", j, "count :", count);
+                // Lower row
+                i < height && j && cells[i + 1][j - 1] && count++;
+                i < height && cells[i + 1][j] && count++;
+                i < height && j < width && cells[i + 1][j + 1] && count++;
+                console.log(count);
 
-            if (cells[i][j] && count > 1 && count < 4) {
-                resultArr[i][j] = 1;
-            } else if (cells[i][j] === 0 && count === 3) {
-                resultArr[i][j] = 1;
-            } else {
-                resultArr[i][j] = 0;
-            }
-        }
+                console.log("row i :", i, "col j :", j, "count :", count);
+
+                if (cells[i][j] && count > 1 && count < 4) {
+                    resultArr[i][j] = 1;
+                } else if (!cells[i][j] && count === 3) {
+                    resultArr[i][j] = 1;
+                } else {
+                    resultArr[i][j] = 0;
+                }
+            });
+        });
+
+        console.log(htmlize(resultArr));
+        cells = resultArr.map((arr) => arr.slice());
     }
-    console.log(resultArr);
     return resultArr;
 }
