@@ -73,24 +73,27 @@ function getGeneration(cells, generations) {
 
     const resultArr = [...cells];
 
-    cells.forEach((row, i) => {
-        row.forEach((element, j) => {
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
             let count = 0;
             // Upper row
-            i > 0 && j > 0 && cells[i - 1][j - 1] && count++;
-            i > 0 && cells[i - 1][j] && count++;
-            i > 0 && j < width && cells[i - 1][j + 1] && count++;
+            i && j && cells[i - 1][j - 1] && count++;
+            i && cells[i - 1][j] && count++;
+            i && j < width && cells[i - 1][j + 1] && count++;
+            console.log(count);
 
             // Same row
-            j > 0 && cells[i][j - 1] && count++;
+            j && cells[i][j - 1] === 1 && count++;
             j < width && cells[i][j + 1] && count++;
+            console.log(count);
 
             // Lower row
-            i < height && j > 0 && cells[i + 1][j - 1] && count++;
+            i < height && j && cells[i + 1][j - 1] && count++;
             i < height && cells[i + 1][j] && count++;
             i < height && j < width && cells[i + 1][j + 1] && count++;
+            console.log(count);
 
-            console.log("own :", cells[i][j], "row :", i, "col :", j, "count :", count);
+            console.log("row :", i, "col :", j, "count :", count);
 
             if (cells[i][j] && count > 1 && count < 4) {
                 resultArr[i][j] = 1;
@@ -99,8 +102,8 @@ function getGeneration(cells, generations) {
             } else {
                 resultArr[i][j] = 0;
             }
-        });
-    });
+        }
+    }
     console.log(resultArr);
     return resultArr;
 }
