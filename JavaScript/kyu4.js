@@ -62,47 +62,62 @@ function solutionPRO(list) {
 // GAME OF LIFE (in progress)
 
 function getGeneration(cells, generations) {
-    console.log("generations :", generations);
-    console.log("cells :", cells);
-    console.log(htmlize(cells));
+    if (generations) {
+        // This will run for each iteration(generation)
 
-    const height = cells.length - 1;
-    const width = cells[0].length - 1;
+        // 1. Get input array dimensions
+        let height = cells.length; // 3
+        let width = cells[0].length; // 3
 
-    console.log("dimensions :", height, "x", width);
+        // 2. Make a copy of the input array (safe method for multidimensional arrays)
+        const copyArr = cells.map((arr) => arr.slice());
 
-    // Safely copy multidimensional array
-    const resultArr = cells.map((arr) => arr.slice());
+        // 3. Add a perimetral layer filled with 0
+        copyArr.push(Array(width).fill(0));
+        copyArr.unshift(Array(width).fill(0));
 
-    for (let g = 0; g < generations; g++) {
-        cells.forEach((row, i) => {
+        copyArr.forEach((arr) => {
+            arr.push(0);
+            arr.unshift(0);
+        });
+
+        // console.log("copyArr :");
+        // console.log(copyArr);
+
+        // 4. Create an empty array the same size
+        const resultArr = copyArr.map((arr) => arr.slice().fill(0)); // [ [ 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0 ],[ 0, 0, 0, 0, 0 ],[ 0, 0, 0, 0, 0 ],[ 0, 0, 0, 0, 0 ] ]
+
+        // console.log("initial resultArr :");
+        // console.log(resultArr);
+
+        // 5. Turn 'height' and 'width' variables into 'last index'
+        height++;
+        width++;
+
+        // 6. run the code that checks each cell wether it should be alive or not in the next iteration
+        copyArr.forEach((row, i) => {
             row.forEach((element, j) => {
-                console.log("cells", cells);
-                console.log("cells[0][0]", cells[0][0]);
+                let count = 0; // number of neighbors alive
 
-                let count = 0;
-                // Upper row
-                i && j && cells[i - 1][j - 1] && count++;
-                i && cells[i - 1][j] && count++;
-                i && j < width && cells[i - 1][j + 1] && count++;
-                console.log(count);
+                // In upper row
+                i && j && copyArr[i - 1][j - 1] && count++;
+                i && copyArr[i - 1][j] && count++;
+                i && j < width && copyArr[i - 1][j + 1] && count++;
 
                 // Same row
-                j && cells[i][j - 1] && count++;
-                j < width && cells[i][j + 1] && count++;
-                console.log(count);
+                j && copyArr[i][j - 1] && count++;
+                j < width && copyArr[i][j + 1] && count++;
 
                 // Lower row
-                i < height && j && cells[i + 1][j - 1] && count++;
-                i < height && cells[i + 1][j] && count++;
-                i < height && j < width && cells[i + 1][j + 1] && count++;
-                console.log(count);
+                i < height && j && copyArr[i + 1][j - 1] && count++;
+                i < height && copyArr[i + 1][j] && count++;
+                i < height && j < width && copyArr[i + 1][j + 1] && count++;
 
-                console.log("row i :", i, "col j :", j, "count :", count);
+                // console.log(i, j, "count:", count)
 
-                if (cells[i][j] && count > 1 && count < 4) {
+                if (element && count > 1 && count < 4) {
                     resultArr[i][j] = 1;
-                } else if (!cells[i][j] && count === 3) {
+                } else if (!element && count === 3) {
                     resultArr[i][j] = 1;
                 } else {
                     resultArr[i][j] = 0;
@@ -110,8 +125,43 @@ function getGeneration(cells, generations) {
             });
         });
 
+        // 7. Trim the grid edges if no alive cell exists. Check again if trim occurs
+        let trimCheck = false;
+
+        do {
+            trimCheck = false;
+            if (!resultArr[height].includes(1)) {
+                resultArr.pop();
+                height--;
+                trimCheck = true;
+            }
+            if (!resultArr[0].includes(1)) {
+                resultArr.shift();
+                height--;
+                trimCheck = true;
+            }
+            if (resultArr.every((arr) => arr[width] === 0)) {
+                resultArr.forEach((arr) => arr.pop());
+                width--;
+                trimCheck = true;
+            }
+            if (resultArr.every((arr) => arr[0] === 0)) {
+                resultArr.forEach((arr) => arr.shift());
+                width--;
+                trimCheck = true;
+            }
+        } while (trimCheck);
+
+        // 8. Remove one generation from the counter
+        generations--;
+
+        console.log("generations left", generations, ":");
         console.log(htmlize(resultArr));
-        cells = resultArr.map((arr) => arr.slice());
+
+        // 9. Call again the function, passing the current grid and the generations left
+        return getGeneration(resultArr, generations);
+    } else {
+        // 10. If no generations left, return the grid unchanged
+        return cells;
     }
-    return resultArr;
 }
