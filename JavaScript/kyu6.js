@@ -106,3 +106,17 @@ function sortArrayPRO(array) {
     const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
     return array.map((x) => (x % 2 ? odd.shift() : x));
 } // This looks almost identical to my approach! I think I'm getting the gist of it.
+
+// Array.diff
+// Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
+// It should remove all values from list a, which are present in list b keeping their order.
+// If a value is present in b, all of its occurrences must be removed from the other:
+// arrayDiff([1,2,2,2,3],[2]) == [1,3]
+
+// My attempt
+const arrayDiff = (a, b) => a.filter((x) => !b.includes(x));
+
+// Most voted solution
+function arrayDiffPRO(a, b) {
+    return a.filter((e) => !b.includes(e));
+} // The same but without arrow function sintax
