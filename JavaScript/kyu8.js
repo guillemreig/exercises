@@ -91,3 +91,23 @@ function reverseStringPRO(str) {
 
 // [...x], used to clone arrays, can also turn a string into an array of letters
 // The .reverse() method reverses the elements of an array.
+
+// Convert a Number to a String!
+// We need a function that can transform a number (integer) into a string.
+// What ways of achieving this do you know?
+
+const toStringMethod = (num) => num.toString();
+
+const stringConcatenation = (num) => "" + num;
+
+const stringInterpolation = (num) => `${num}`;
+
+const stringConstructor = (num) => String(num);
+
+const concatMethod = (num) => "".concat(num);
+
+const joinMethod = (num) => [num].join("");
+
+const toFixedMethod = (num) => num.toFixed();
+
+const jsonStringify = (num) => JSON.stringify(num);
