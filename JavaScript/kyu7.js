@@ -137,3 +137,39 @@ function getIntervalEasy(note1, note2) {
 
     return Math.abs(noteArr.indexOf(note1) - noteArr.indexOf(note2)) + 1;
 }
+
+// Complementary DNA
+// In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G".
+// Your function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side.
+// "ATTGC" --> "TAACG"
+// "GTAT" --> "CATA"
+
+const DNAStrand = (dna) =>
+    dna
+        .split("")
+        .map((x) => DNAswitch(x))
+        .join("");
+
+function DNAswitch(symbol) {
+    switch (symbol) {
+        case "A":
+            return "T";
+            break;
+        case "T":
+            return "A";
+            break;
+        case "C":
+            return "G";
+            break;
+        case "G":
+            return "C";
+    }
+}
+
+// PRO version
+
+const DNAStrandPRO = (dna) => dna.replace(/[ATCG]/g, (x) => ({ A: "T", T: "A", C: "G", G: "C" }[x]));
+
+// The replace() method returns a new string with one, some, or all matches of a pattern replaced by a replacement.
+// The pattern can be a string or a RegExp, and the replacement can be a string or a function called for each match.
+// If pattern is a string, only the first occurrence will be replaced. The original string is left unchanged.
