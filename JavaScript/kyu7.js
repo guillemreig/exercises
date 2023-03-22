@@ -154,13 +154,10 @@ function DNAswitch(symbol) {
     switch (symbol) {
         case "A":
             return "T";
-            break;
         case "T":
             return "A";
-            break;
         case "C":
             return "G";
-            break;
         case "G":
             return "C";
     }
