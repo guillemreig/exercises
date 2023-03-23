@@ -170,3 +170,12 @@ const DNAStrandPRO = (dna) => dna.replace(/[ATCG]/g, (x) => ({ A: "T", T: "A", C
 // The replace() method returns a new string with one, some, or all matches of a pattern replaced by a replacement.
 // The pattern can be a string or a RegExp, and the replacement can be a string or a function called for each match.
 // If pattern is a string, only the first occurrence will be replaced. The original string is left unchanged.
+
+// Is this a triangle?
+// Implement a function that accepts 3 integer values a, b, c. The function should return true if a triangle can be built with the sides of given length and false in any other case.
+// (In this case, all triangles must have surface greater than 0 to be accepted).
+
+const isTriangle = (a, b, c) => ![a, b, c].some((x) => x >= (a + b + c) / 2);
+
+// PRO
+const isTrianglePRO = (a, b, c) => a + b > c && a + c > b && b + c > a;
