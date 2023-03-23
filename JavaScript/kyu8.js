@@ -1,5 +1,10 @@
 // KYU 8 (beginners)
 
+// Boolean to 'Yes' or 'No'
+// Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
+
+const boolToWord = (bool) => (bool ? "Yes" : "No");
+
 // Even or Odd
 // Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
 
@@ -125,3 +130,44 @@ function greetReplace(name) {
 function greetASCII(name) {
     return `\x48\x65\x6c\x6c\x6f\x2c\x20${name}\x20\x68\x6f\x77\x20\x61\x72\x65\x20\x79\x6f\x75\x20\x64\x6f\x69\x6e\x67\x20\x74\x6f\x64\x61\x79\x3f`;
 }
+
+// Total amount of points
+// Our team's match results are recorded in a collection of strings. Each match is represented by a string in the format "x:y", where x is our team's score and y is our opponents score.
+// For example: ["3:1", "2:2", "0:1", ...]
+// Points are awarded for each match as follows:
+// if x > y: 3 points (win)
+// if x < y: 0 points (loss)
+// if x = y: 1 point (tie)
+// We need to write a function that takes this collection and returns the number of points our team (x) got in the championship by the rules given above.
+
+function points(games) {
+    let points = 0;
+
+    games.forEach((element) => {
+        if (element[0] > element[2]) {
+            points += 3;
+        } else if (element[0] === element[2]) {
+            points++;
+        }
+    });
+
+    return points;
+}
+
+// Convert number to reversed array of digits
+// Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
+// 35231 => [1,3,2,5,3]
+
+const digitize = (n) =>
+    n
+        .toString()
+        .split("")
+        .reverse()
+        .map((x) => parseInt(x));
+
+// interesting variant
+const digitizePRO = (n) => Array.from(String(n), Number).reverse();
+
+// The Array.from() static method creates a new, shallow-copied Array instance from an iterable or array-like object:
+// Array.from('foo') => ["f", "o", "o"]
+// Array.from([1, 2, 3], x => x + x) => [2, 4, 6]
