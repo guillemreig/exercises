@@ -179,3 +179,16 @@ const isTriangle = (a, b, c) => ![a, b, c].some((x) => x >= (a + b + c) / 2);
 
 // PRO
 const isTrianglePRO = (a, b, c) => a + b > c && a + c > b && b + c > a;
+
+// Get the Middle Character
+// You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
+// Kata.getMiddle("test") should return "es"
+// Kata.getMiddle("testing") should return "t"
+
+const getMiddle = (s) => (s.length % 2 ? s[Math.floor(s.length / 2)] : s[s.length / 2 - 1] + s[s.length / 2]);
+
+// PRO version
+const getMiddlePRO = (s) => s.substring(Math.ceil(s.length / 2) - 1, Math.floor(s.length / 2) + 1);
+
+// interesting version
+const getMiddleWEIRD = (s) => s.substr((s.length - 1) >>> 1, (~s.length & 1) + 1);
