@@ -192,3 +192,24 @@ const getMiddlePRO = (s) => s.substring(Math.ceil(s.length / 2) - 1, Math.floor(
 
 // interesting version
 const getMiddleWEIRD = (s) => s.substr((s.length - 1) >>> 1, (~s.length & 1) + 1);
+
+// Valid Parentheses
+// Write a function that takes a string of parentheses, and determines if the order of the parentheses is valid.
+// The function should return true if the string is valid, and false if it's invalid.
+
+function validParentheses(parenStr) {
+    let counter = 0;
+
+    for (let i = 0; i < parenStr.length; i++) {
+        if (parenStr[i] === "(") counter++;
+        if (parenStr[i] === ")") counter--;
+        if (counter < 0) return false;
+    }
+
+    if (counter !== 0) return false;
+
+    return true;
+}
+
+// My single line version
+const validParenthesesPRO = (s, c = 0) => ![...s].map((x) => (x === "(" ? c++ : c--)).includes(-1) && c === 0;
