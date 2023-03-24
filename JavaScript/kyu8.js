@@ -171,3 +171,14 @@ const digitizePRO = (n) => Array.from(String(n), Number).reverse();
 // The Array.from() static method creates a new, shallow-copied Array instance from an iterable or array-like object:
 // Array.from('foo') => ["f", "o", "o"]
 // Array.from([1, 2, 3], x => x + x) => [2, 4, 6]
+
+// Grasshopper - Grade book
+// Complete the function so that it finds the average of the three scores passed to it and returns the letter value associated with that grade.
+
+const getGrade = (a, b, c) => "FFFFFFDCBAA"[Math.floor((a + b + c) / 30)];
+
+// PRO version
+function getGradePRO(a, b, c) {
+    let s = (a + b + c) / 3;
+    return s >= 90 ? "A" : s >= 80 ? "B" : s >= 70 ? "C" : s >= 60 ? "D" : "F";
+}
