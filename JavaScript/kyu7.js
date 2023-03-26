@@ -212,4 +212,5 @@ function validParentheses(parenStr) {
 }
 
 // My single line version
+
 const validParenthesesPRO = (s, c = 0) => ![...s].map((x) => (x === "(" ? c++ : c--)).includes(-1) && c === 0;
