@@ -214,3 +214,24 @@ function validParentheses(parenStr) {
 // My single line version
 
 const validParenthesesPRO = (s, c = 0) => ![...s].map((x) => (x === "(" ? c++ : c--)).includes(-1) && c === 0;
+
+// Excel sheet column numbers
+// Write a function that given a column title as it appears in an Excel sheet, returns its corresponding column number. All column titles will be uppercase.
+// 'A' === 1
+// 'Z' === 26
+// 'AA' === 27
+
+function titleToNumber(title) {
+    let result = 0;
+    for (let i = 0, length = title.length; i < length; i++) {
+        result += ".ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(title[length - 1 - i]) * 26 ** i;
+    }
+    return result;
+}
+
+// My single line variant
+const titleToNumberArrow = (title) =>
+    [...title]
+        .reverse()
+        .map((x, i) => ".ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(x) * 26 ** i)
+        .reduce((a, b) => a + b);
