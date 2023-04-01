@@ -165,3 +165,34 @@ function getGeneration(cells, generations) {
         return cells;
     }
 }
+
+// Simple Fun #159: Middle Permutation
+// You are given a string s. Every letter in s appears once.
+// Consider all strings formed by rearranging the letters in s. After ordering these strings in dictionary order, return the middle term. (If the sequence has a even length n, define its middle term to be the (n/2)th term.)
+// For s = "abc", the result should be "bac".
+// The permutations in order are: "abc", "acb", "bac", "bca", "cab", "cba" So, The middle term is "bac".
+
+function middlePermutation(s) {
+    const sortedArr = [...s].sort();
+    const middleIndex = Math.ceil(s.length / 2 - 1);
+    const isEven = s.length % 2 === 0;
+
+    if (isEven) {
+        return (
+            sortedArr[middleIndex] +
+            sortedArr
+                .filter((x) => x !== sortedArr[middleIndex])
+                .reverse()
+                .join("")
+        ); // EVEN
+    } else {
+        return (
+            sortedArr[middleIndex] +
+            sortedArr[middleIndex - 1] +
+            sortedArr
+                .filter((x) => x !== sortedArr[middleIndex] && x !== sortedArr[middleIndex - 1])
+                .reverse()
+                .join("")
+        ); // ODD
+    }
+}
